@@ -1,6 +1,5 @@
 $adcomps = Get-ADComputer -filter * -Credential $cred | Select-Object -ExpandProperty name
 
-# We "capture" the results into a new variable
 $report = foreach ($pc in $adcomps) {
     if (Test-Connection -ComputerName $pc -Count 1 -Quiet) {
         [PSCustomObject]@{
@@ -17,5 +16,5 @@ $report = foreach ($pc in $adcomps) {
     }
 }
 
-# Now you have a beautiful table
+# Or you can pipe the result to something usefull
 $report | Format-Table -AutoSize
