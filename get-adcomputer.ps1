@@ -1,3 +1,5 @@
+$cred = (get-credential)
+
 $adComputers = Get-ADComputer -filter * -credential $cred | Select-Object -ExpandProperty name 
 
 $adComputers | ForEach-Object -Parallel {
