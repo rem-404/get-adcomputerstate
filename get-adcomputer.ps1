@@ -4,7 +4,7 @@ $adComputers = Get-ADComputer -filter * -credential $cred | Select-Object -Expan
 
 $adComputers | ForEach-Object -Parallel {
 
-    $online = Test-Connection -ComputerName $_ -Count 1 -Quiet
+    $online = Test-Connection -ComputerName $_ -Count 1 -Quiet -TimeoutSeconds 1
 
     [PSCustomObject]@{
         Name      = $_
